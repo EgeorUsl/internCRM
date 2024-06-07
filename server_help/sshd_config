@@ -1,0 +1,46 @@
+Include /etc/ssh/sshd_config.d/*.conf
+
+# Порт по умолчанию для SSH (можно сменить на 3 версии протокола)
+Port 22
+
+# Разделение прав
+UsePrivilegeSeparation yes
+
+# Подключение к пользователю root
+PermitRootLogin yes
+StrictModes yes
+
+# Количество попыток на вход в систему
+MaxAuthTries 3
+
+# Время жизни (в сек) и размер ключа для версии 1
+KeyRegenerationInterval 3600
+ServerKeyBits 768
+
+# Журналирование
+SyslogFacility AUTH
+LogLevel INFO
+
+
+KbdInteractiveAuthentication no
+UsePAM yes
+
+X11Forwarding yes
+X11DisplayOffset 10
+
+PrintMotd no
+AcceptEnv LANG LC_*
+Subsystem sftp	/usr/lib/openssh/sftp-server
+
+# Запрещаем вход по паролю (только по ключам)
+PasswordAuthentication no
+
+IgnoreRhosts yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+
+# Запрещаем пустые пароли
+PermitEmptyPasswords no
+
+# Не используем аутентификацию вызов-ответ
+ChallengeResponseAuthentication no

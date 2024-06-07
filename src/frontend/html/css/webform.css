@@ -1,0 +1,150 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("../img/bg.png");
+  background-size: cover;
+}
+
+/* Web page settings for mobile devices */
+@media only screen and (max-width: 767px) {
+  body {
+    font-size: 10px;
+  }
+  #header-form {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  input {
+    font-size: 6px;
+  }
+  #edit-formcontainer {
+    padding: 20px;
+  }
+  .flexbox {
+    margin-bottom: 10px;
+  }
+
+  #edit-formcontainer {
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: white;
+  }
+  #block-first-name,
+  #block-email {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #block-last-name {
+    width: 100%;
+  }
+
+  .input-text {
+    padding: 6px 20px 7px 10px;
+    font-size: 12px;
+  }
+
+  .button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+/* Web page settings for computers */
+@media only screen and (min-width: 768px) {
+  #edit-formcontainer {
+    padding: 30px 35px 30px 40px;
+  }
+
+  .flexbox {
+    margin-bottom: 15px;
+  }
+
+  #block-first-name,
+  #block-last-name,
+  #block-city,
+  #block-email {
+    width: 48%;
+  }
+
+  #edit-formcontainer {
+    width: 750px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: white;
+  }
+}
+
+.one-column {
+  width: 100%;
+}
+
+form label + input {
+  margin: 15px;
+  width: auto;
+}
+
+.button-blue {
+  color: #fff;
+  background-color: #0279c0;
+}
+
+input {
+  line-height: normal;
+}
+
+label.required::after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+}
+
+.custom-file-input {
+  color: transparent;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::-moz-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: "Select some files";
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  background: linear-gradient(top, #e3e3e3, #f9f9f9);
+  background: -moz-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+body {
+  padding: 20px;
+}
