@@ -101,10 +101,11 @@
           size="60" maxlength="255" required="required" aria-required="true">
       </div>
 
-      <div id="edit-soglasen-s-politikoy-konfidencialnosti--wrapper" class="">
+      <div id="edit-soglasen-s-politikoy-konfidencialnosti--wrapper">
         <div id="block_policy_confidential" class="flexbox flexbox--jcsb">
-          <div class="">
-            <input type="checkbox" id="edit-soglasen-s-politikoy-konfidencialnosti-" value="Да" class="">
+          <div>
+            <input type="checkbox" onchange="document.getElementById('actions-submit').disabled = !this.checked;" ,
+              id="edit-soglasen-s-politikoy-konfidencialnosti-" value="Да" class="">
 
             <label>Согласен с <a target="_blank"
                 href="https://www.ispsystem.net/contracts/personal-data-processing-policy.html">Политикой
@@ -113,19 +114,22 @@
           </div>
         </div>
       </div>
-      <div data-drupal-selector="edit-actions" class="form-actions webform-actions js-form-wrapper form-wrapper"
-        id="edit-actions"><input
+
+      <div class="form-actions webform-actions js-form-wrapper form-wrapper" id="edit-actions"><input
           class="webform-button--submit button button-blue button button--primary js-form-submit form-submit"
-          data-drupal-selector="edit-actions-submit" data-disable-refocus="true" type="submit" id="actions-submit"
-          name="op" value="Отправить" data-once="drupal-ajax">
+          type="submit" id="actions-submit" disabled="disabled" name="op" value="Отправить">
       </div>
     </div>
   </div>
   </div>
   </div>
-  <script>      const idKeyboardArray = ["first-name", "last-name", "email", "studing", "education", "target_internship", "resume", "edit-soglasen-s-politikoy-konfidencialnosti-", "actions-submit"];
+
+  <script>      const idKeyboardArray = ["first-name", "last-name",
+      "email", "studing", "education", "target_internship", "resume",
+      "edit-soglasen-s-politikoy-konfidencialnosti-", "actions-submit"];
   </script>
   <script src="js/keyboardNavigation.js"></script>
+  <script src="js/requestIntern.js"></script>
 </body>
 
 </html>

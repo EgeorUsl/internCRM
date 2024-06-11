@@ -1,2 +1,8 @@
 src/backend/venv
+venv/
 src/backend/__pycache__
+__pycache__/
+.env
+src/backend/.env
+src/backend/certs
+*.pem

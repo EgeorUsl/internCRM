@@ -31,6 +31,11 @@ class DatabaseHelper:
         return session
 
     async def session_dependency(self) -> AsyncSession:
+        session = await self.session_factory()
+        # try:
+        #     yield session
+        # finally:
+        #     await session.close()
         async with self.session_factory() as session:
             yield session
             await session.close()

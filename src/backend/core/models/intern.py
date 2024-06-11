@@ -13,3 +13,4 @@ class Intern(Base):
         String(50), default="working", nullable=False)
     city: Mapped[str] = mapped_column(String(255), nullable=False)
     branch: Mapped[str] = mapped_column(String(255), nullable=True)
+    group: Mapped[str] = mapped_column(String(255), nullable=True)

@@ -11,15 +11,16 @@ router = APIRouter(prefix="/email",
 
 class EmailSchema(BaseModel):
     email: List[EmailStr]
+    subject: str
+    body: str
 
 
 @router.post("/send")
-async def simple_send(email: EmailSchema,
-                      html: str = "") -> JSONResponse:
+async def simple_send(letter: EmailSchema) -> JSONResponse:
     conf = ConnectionConfig(
         MAIL_USERNAME=settings.email.USERNAME,
         MAIL_PASSWORD=settings.email.PASSWORD,
-        MAIL_FROM="egorovdaniil01062004@gmail.com",
+        MAIL_FROM=f"{settings.email.USERNAME}@gmail.com",
         MAIL_PORT=settings.email.PORT,
         MAIL_SERVER=settings.email.HOST,
         MAIL_SSL_TLS=settings.email.SSL_TLS,
@@ -29,10 +30,11 @@ async def simple_send(email: EmailSchema,
     )
     message = MessageSchema(
         subject="Fastapi-Mail module",
-        recipients=email.dict().get("email"),
-        body=html,
+        recipients=letter.email,
+        body=letter.body,
         subtype=MessageType.html)
 
     fm = FastMail(conf)
     await fm.send_message(message)
-    return JSONResponse(status_code=200, content={"message": "email has been sent"})
+    return JSONResponse(status_code=200,
+                        content={"message": "email has been sent"})

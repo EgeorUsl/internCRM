@@ -53,11 +53,21 @@ class GoogleForms(BaseSettings):
                                       env_file=f"{BASE_DIR}/.env")
 
 
+class Web(BaseSettings):
+    DOMAIN: str = "localhost:8000"
+
+    model_config = SettingsConfigDict(env_file_encoding='utf-8',
+                                      env_prefix="WEB_",
+                                      extra="ignore",
+                                      env_file=f"{BASE_DIR}/.env")
+
+
 class Settings(BaseModel):
     db: DBSettings = DBSettings()
     email: EmailServer = EmailServer()
     google_forms: GoogleForms = GoogleForms()
     authJWT: AuthJWT = AuthJWT()
+    web: Web = Web()
 
 
 settings = Settings()

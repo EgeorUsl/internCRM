@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: wxmfs-qhwf2
+created: 2024-06-08T13:23:43+08:00
