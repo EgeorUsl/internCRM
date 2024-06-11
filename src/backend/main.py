@@ -7,6 +7,8 @@ import uvicorn
 from core.auth.jwt_auth import router as auth_router
 from core.email.email import router as email_router
 from candidates.views import router as candidates_router
+from users.views import router as users_router
+from core.tests_forms import router as gforms_router
 from config import settings
 
 
@@ -20,6 +22,11 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(auth_router)
 app.include_router(email_router)
 app.include_router(candidates_router)
+app.include_router(users_router)
+app.include_router(interns_router)
+app.include_router(gforms_router)
+app.include_router(webform_router)
+
 
 origins = [f"http://{settings.web.DOMAIN}", f"https://{settings.web.DOMAIN}"]
 
