@@ -37,10 +37,16 @@
   <header>
     <div class="topbar">
       <div class="container">
+
         <div class="topbar-center">
-          <li><button class="sw">Кандидаты</button></li>
-          <li><button class="sw">Стажеры</button></li>
+          <div class="menu-item">
+            <a class="sw active">Кандидаты</a>
+          </div>
+          <div class="menu-item">
+            <a class="sw">Стажеры</a>
+          </div>
         </div>
+
         <div class="topbar-right">
           <!-- <li><a href="#"><img src="../img/bx-menu.svg"></img></a></li> -->
         </div>
@@ -94,6 +100,16 @@
         </div>
       </div>
     </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <pre id="html-code"></pre>
+      </div>
+    </div>
+
+    <div id="modal-backdrop" class="modal-backdrop" style="display: none;"></div>
+
   </div>
   <script src="../js/admin.js"></script>
 </body>

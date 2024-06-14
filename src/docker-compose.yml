@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      # DB_URL=...
+      DB_URL=mariadb+aiomysql://admin_crm:HHHHHhhhhh12345@localhost/crm?charset=utf8mb4
+      DB_ECHO=True
+
+
+      EMAIL_USERNAME="Egorov-D-A01"
+      EMAIL_HOST="smtp.yandex.ru"
+      EMAIL_PORT=465
+      EMAIL_PASSWORD="azmhanftadtptimn"
+      EMAIL_FROM="Egorov-D-A01@yandex.ru"
+    ports:
+      - "8000:8000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./frontend/html:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl:/ssl
+    depends_on:
+      - backend

@@ -1,18 +1,32 @@
 
 from typing import Annotated
 from annotated_types import MinLen, MaxLen
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr
+from fastapi_users import schemas
+from typing import Optional
 
 
-class CreateUser(BaseModel):
-    model_config = ConfigDict(strict=True)
-    username: Annotated[str, MinLen(3), MaxLen(255)]
-    password: bytes
+class RoleSchema(BaseModel):
+    name: str
+    permissions: dict
 
 
-class UserSchema(BaseModel):
-    model_config = ConfigDict(strict=True)
+class UserRead(schemas.BaseUser[int]):
+    model_config = ConfigDict(from_attributes=True)
 
-    username: Annotated[str, MinLen(3), MaxLen(255)]
-    password: bytes
-    active: bool = True
+    email: EmailStr
+    username: str
+    role_id: int
+    is_active: bool = True
+    is_superuser: bool = False
+    is_verified: bool = False
+
+
+class UserCreate(schemas.BaseUserCreate):
+    username: str
+    email: EmailStr
+    password: str
+    role_id: int
+    is_active: Optional[bool] = True
+    is_superuser: Optional[bool] = False
+    is_verified: Optional[bool] = False

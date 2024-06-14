@@ -12,9 +12,8 @@ class CreateCandidate(BaseModel):
     studing_place: Annotated[str, MaxLen(255)]
     education: Annotated[str, MinLen(3), MaxLen(255)]
     target_internship: Optional[str]
-    city: Annotated[str, MaxLen(255)]
-    prefer_branch: Annotated[str, MaxLen(255)]
-    resume_filename: Optional[str]
+    city_id: int
+    prefer_branch_id: int
 
 
 class CandidateSchema(CreateCandidate):

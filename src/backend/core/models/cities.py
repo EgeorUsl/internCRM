@@ -8,3 +8,5 @@ class City(Base):
 
     city_name: Mapped[str] = mapped_column(String(255), unique=True,
                                            nullable=False)
+    # cand_city: Mapped['candidates'] = relationship(
+    #     'candidates', back_populates="city")

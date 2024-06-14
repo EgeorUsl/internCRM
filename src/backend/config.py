@@ -20,8 +20,9 @@ class AuthJWT(BaseSettings):
     private_key_path: Path = BASE_DIR / "certs" / "jwt-private.pem"
     public_key_path: Path = BASE_DIR / "certs" / "jwt-public.pem"
     algorithm: str = "RS256"
-    access_token_expire_minutes: int = 15
-    refresh_token_expire_days: int = 30
+    access_token_expire_seconds: int = 7200
+    cookie_session_access_id: str = "InternCRM_access"
+    cookie_session_refresh_id: str = "InternCRM_refresh"
 
     model_config = SettingsConfigDict(env_file_encoding='utf-8',
                                       extra="ignore",
@@ -30,12 +31,14 @@ class AuthJWT(BaseSettings):
 
 
 class EmailServer(BaseSettings):
-    USERNAME: str = ""
-    HOST: str = "localhost"
+    USERNAME: str
+    SERVER_SMTP: str = "localhost"
+    SERVER: str = ""
+    FROM: str
     PORT: int = 587
-    PASSWORD: str = ""
+    PASSWORD: str
     SSL_TLS: bool = True
-    PATH_TEMPLATE: str = ""
+    PATH_TEMPLATE: Path = BASE_DIR / "core" / "email" / "templates"
 
     model_config = SettingsConfigDict(env_file_encoding='utf-8',
                                       extra="ignore",

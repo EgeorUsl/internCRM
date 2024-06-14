@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from .schemas import CandidateSchema, CreateCandidate
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.engine import Result
 from core.models import Candidate
 
@@ -14,7 +14,9 @@ async def create_candidate(session: AsyncSession,
 
 
 async def get_candidates(session: AsyncSession) -> list[CandidateSchema]:
-    stmt = select(Candidate).order_by(Candidate.scores)
+    # stmt = select(Candidate).order_by(Candidate.scores)
+
+    stmt = text("SELECT * FROM candidates;")
     result: Result = await session.execute(stmt)
     candidates = result.scalars().all()
     return list(candidates)
