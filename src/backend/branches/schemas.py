@@ -15,4 +15,4 @@ class BranchSchema(BaseModel):
 
     id:  int
     branch_name: Annotated[str, MaxLen(255)]
-    # groups_list: list
+    groups_list: list

@@ -57,7 +57,10 @@ cityInput.addEventListener("input", function(event) {
 
 const createCandidate = async (candidateData) => {
   try {
-    const response = await axios.post("/create_candidate", candidateData);
+    const response = await axios.post(
+      "http://localhost:8000/api/v1/create_candidate",
+      candidateData,
+    );
     return response.data;
   } catch (error) {
     console.error("Error sending request:", error);
@@ -116,13 +119,6 @@ submitBtn.addEventListener("click", function(event) {
     }
   }
 
-  if (firstnameInput.value.trim() === "") {
-    createError(firstnameInput, "Заполните это обязательное поле");
-    isValid = false;
-  } else {
-    removeError(cityInput);
-  }
-
   if (educationInput.value.trim() === "") {
     createError(educationInput, "Заполните это обязательное поле");
     isValid = false;
@@ -131,7 +127,7 @@ submitBtn.addEventListener("click", function(event) {
       createError(educationInput, "Неправильный формат образования");
       isValid = false;
     } else {
-      removeError(emailInput);
+      removeError(educationInput);
     }
   }
   if (isValid) {
@@ -142,8 +138,8 @@ submitBtn.addEventListener("click", function(event) {
       studing_place: studingInput.value,
       education: educationInput.value,
       target_internship: targetInput.value,
-      city: cityInput.value,
-      prefer_branch: branchInput.value,
+      city_id: cityInput.value,
+      prefer_branch_id: branchInput.value,
     };
 
     createCandidate(candidateData)
@@ -151,6 +147,7 @@ submitBtn.addEventListener("click", function(event) {
         console.log("Created candidate:", createdCandidate);
       })
       .catch((error) => {
+        // createError(submitBtn, "Ошибка ввода формы");
         console.error("Error:", error);
       });
   } else {

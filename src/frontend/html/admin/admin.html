@@ -4,12 +4,14 @@
 <head>
   <meta charset="utf-8" />
   <title>Отбор людей на стажировку</title>
+  <script src="../node_modules/axios/dist/axios.min.js"></script>
   <script src="../js/accessToAdmin.js"></script>
   <link href="../css/normalyze.css" rel="stylesheet" type="text/css" />
   <link href="../css/admin.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+
   <nav class="sidebar">
     <div class="logo-menu">
       <h2 class="logo">Interns CRM</h2>
@@ -17,101 +19,100 @@
     </div>
 
     <hr>
-    <ul class="list">
-      <li class="list-item">
-        <a href="#">
-          <img src="../img/bx-mail-send.svg"></img>
-          <span class="link-name" style="--i:1">Разослать письма</span></a>
-      </li>
-    </ul>
+    <!-- <ul class="list"> -->
+    <!--   <li class="list-item"> -->
+    <!--     <a href="#" id="letters"> -->
+    <!--       <img src="../img/bx-mail-send.svg"></img> -->
+    <!--       <span class="link-name" style="--i:1">Разослать письма</span></a> -->
+    <!--   </li> -->
+    <!-- </ul> -->
 
     <ul class="list">
       <li class="list-item">
-        <a href="#">
+        <a href="#" id="choose-city">
           <img src="../img/bxs-buildings.svg"></img>
           <span class="link-name" style="--i:2">Выбрать город</span></a>
       </li>
     </ul>
+    <!-- <ul class="list"> -->
+    <!--   <li class="list-item"> -->
+    <!--     <a href="#" id="add-user"> -->
+    <!--       <img src="../img/bxs-user-plus.svg"></img> -->
+    <!--       <span class="link-name" style="--i:3">Создать пользователя</span></a> -->
+    <!--   </li> -->
+    <!-- </ul> -->
+    <ul class="list list-bottom">
+      <li class="list-item">
+        <a href="#" id="convert-candidates">
+          <img src="../img/bx-transfer-alt.svg"></img>
+          <span class="link-name" style="--i:3">Перевести кандидатов</span></a>
+      </li>
+    </ul>
+    <ul class="list list-bottom">
+      <li class="list-item">
+        <a href="#" id="the-end">
+          <img src="../img/bx-folder-minus.svg"></img>
+          <span class="link-name" style="--i:4">Удалить записи в БД</span></a>
+      </li>
+    </ul>
   </nav>
 
+  <div id="sidebar-right" class="sidebar-right">
+    <div class="user-info">
+      <h2 id="user-panel"></h2>
+      <p id="email-panel"></p>
+    </div>
+    <hr>
+    <div class="user-actions">
+      <!-- <a href="#" id="change-password">Сменить пароль</a> -->
+      <a href="#" id="exit-account">Выйти из аккаунта</a>
+    </div>
+  </div>
+
+  <div id="overlay" class="overlay"></div>
   <header>
     <div class="topbar">
       <div class="container">
 
         <div class="topbar-center">
           <div class="menu-item">
-            <a class="sw active">Кандидаты</a>
+            <a href="#" id="btnCand" class="sw selected">Кандидаты</a>
           </div>
           <div class="menu-item">
-            <a class="sw">Стажеры</a>
+            <a href="#" id="btnIntern" class="sw">Стажеры</a>
+          </div>
+          <div class="menu-item">
+            <a href="#" id="btnRefresh"><img src="../img/bx-refresh.svg" class="btnimg"></img></a>
           </div>
         </div>
 
+        <!-- User button profile -->
         <div class="topbar-right">
-          <!-- <li><a href="#"><img src="../img/bx-menu.svg"></img></a></li> -->
+          <a href="#" id="toggleRightSidebar">
+            <div id="user"></div><img src="../img/bxs-user-circle.svg"></img>
+          </a>
         </div>
       </div>
     </div>
   </header>
 
   <div id="view-db-list">
-    <div class="program">
-      <h2 class="program-title">Программа 1</h2>
-      <div class="program-content">
-        <div class="group">
-          <h3 class="group-title">Группа 1</span></h3>
-          <div class="group-content">
-            <div class="person">Человек 1</div>
-            <div class="person">Человек 2</div>
-            <div class="person">Человек 3</div>
-          </div>
-        </div>
-        <div class="group">
-          <h3 class="group-title">Группа 2</h3>
-          <div class="group-content">
-            <div class="person">Человек 1</div>
-            <div class="person">Человек 2</div>
-            <!-- Добавьте остальных людей в этой группе -->
-          </div>
-        </div>
-        <!-- Добавьте остальные группы в Программе 1 -->
-      </div>
-    </div>
 
-    <hr>
-    <div class="program">
-      <h2 class="program-title">Программа 2</h2>
-      <div class="program-content">
-        <div class="group">
-          <h3 class="group-title">Группа 1</h3>
-          <div class="group-content">
-            <div class="person">Человек 1</div>
-            <div class="person">Человек 2</div>
-            <!-- Добавьте остальных людей в этой группе -->
-          </div>
-        </div>
-        <div class="group">
-          <h3 class="group-title">Группа 2</span></h3>
-          <div class="group-content">
-            <div class="person">Человек 1</div>
-            <div class="person">Человек 2</div>
-            <div class="person">Человек 3</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <pre id="html-code"></pre>
-      </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="html-code"></div>
     </div>
+  </div>
 
-    <div id="modal-backdrop" class="modal-backdrop" style="display: none;"></div>
+  <div id="modal-backdrop" class="modal-backdrop" style="display: none;"></div>
 
   </div>
   <script src="../js/admin.js"></script>
+  <script src="../js/table.js"></script>
+  <script src="../js/panel-left.js"></script>
 </body>
 
 </html>

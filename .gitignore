@@ -5,4 +5,8 @@ __pycache__/
 .env
 src/backend/.env
 src/backend/certs
+src/ssl
 *.pem
+*.crt
+*.key
+favicon.ico

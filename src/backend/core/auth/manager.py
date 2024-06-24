@@ -11,9 +11,8 @@ from config import settings
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
 
-    with open(settings.authJWT.private_key_path, 'r') as f:
+    with open(settings.authJWT.secret_sync, 'r') as f:
         reset_password_token_secret = f.read().strip()
-    with open(settings.authJWT.private_key_path, 'r') as f:
         verification_token_secret = f.read().strip()
 
     async def on_after_register(self, user: User,
@@ -29,6 +28,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         await self.validate_password(user_create.password, user_create)
 
         existing_user = await self.user_db.get_by_email(user_create.email)
+        print(existing_user)
         if existing_user is not None:
             raise exceptions.UserAlreadyExists()
 

@@ -26,11 +26,13 @@
 #         return {"status": 500, "errors": e}
 
 from starlette.responses import JSONResponse
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from config import settings
 from pydantic import EmailStr, BaseModel
 from typing import List
+from core.auth.auth import current_superuser
+from core.models import User
 
 router = APIRouter(prefix="/email",
                    tags=["E-MAIL"])
@@ -43,7 +45,7 @@ class EmailSchema(BaseModel):
 
 
 @router.post("/send")
-async def simple_send(letter: EmailSchema) -> JSONResponse:
+async def simple_send(letter: EmailSchema, user: User = Depends(current_superuser)) -> JSONResponse:
     conf = ConnectionConfig(
         MAIL_USERNAME=settings.email.USERNAME,
         MAIL_PASSWORD=settings.email.PASSWORD,

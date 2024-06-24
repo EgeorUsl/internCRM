@@ -1,0 +1,16 @@
+DB_URL=mariadb+aiomysql://admin_crm:password_db@localhost/crm?charset=utf8mb4
+
+
+DB_ADMIN_CRM=password
+
+EMAIL_USERNAME="reception_candidates"
+EMAIL_SERVER_SMTP="smtp.gmail.com"
+EMAIL_PORT=465
+EMAIL_PASSWORD="password_email"
+EMAIL_FROM="reception_candidates@gmail.com"
+
+#Docker mysql
+MYSQL_ROOT_PASSWORD=jslahgsjsdlfkajslkjfjshg
+MYSQL_DATABASE=crm
+MYSQL_USER=admin_crm
+MYSQL_PASSWORD=password_db

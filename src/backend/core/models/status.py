@@ -1,7 +1,6 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String
 from .base import Base
-from .candidate import Candidate
 
 
 class Status(Base):
@@ -9,5 +8,3 @@ class Status(Base):
 
     status_name: Mapped[str] = mapped_column(String(255), unique=True,
                                              nullable=False)
-    # status_cand: Mapped['candidates'] = relationship(
-    #     'candidates', back_populates="status")

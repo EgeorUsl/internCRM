@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, UniqueConstraint
+from sqlalchemy import String, ForeignKey, Integer
 from .base import Base
-from .candidate import Candidate
 
 
 class Branch(Base):
@@ -9,5 +8,12 @@ class Branch(Base):
 
     branch_name: Mapped[str] = mapped_column(String(255), unique=True,
                                              nullable=False)
-    # groups: Mapped[list] = mapped_column(String(255))
-    # __table_args__ = (UniqueConstraint('branch_name', 'groups'),)
+    groups = relationship("Group", backref="branch")
+
+
+class Group(Base):
+    __tablename__ = "groups"
+
+    group_name: Mapped[str] = mapped_column(String(255),
+                                            nullable=False)
+    branch_id: Mapped[Branch] = mapped_column(Integer, ForeignKey(Branch.id))

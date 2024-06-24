@@ -4,34 +4,36 @@
 <head>
   <title>Авторизация</title>
   <meta charset="UTF-8" />
+  <script src="../node_modules/axios/dist/axios.min.js"></script>
+  <script src="../js/redirectToAdmin.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="../css/normalyze.css" rel="stylesheet" type="text/css" />
   <link href="../css/login.css" rel="stylesheet" />
 </head>
 
 <body>
-  <form id="login">
+  <div id="login">
     <h1 class="login_title">Вход</h1>
     <div id="msg-error"></div>
     <div class="login_group">
-      <input title="" maxlength="255" pattern="[A-Za-z_0-9]{3,}" id="username" type="text" class="login_input"
+      <input title="" maxlength="255" id="username" pattern="^(?!.*[&|<>]).*$" type="text" class="login_input"
         placeholder=" " required />
-      <label class="login_label">Имя пользователя</label>
+      <label class="login_label">Логин</label>
     </div>
 
     <div class="login_group">
-      <input title="" id="password" type="password" class="login_input" maxlength="255" pattern="[\w\d\S]{8,}"
+      <input title="" id="password" type="password" pattern="^.{6,}$" class="login_input" maxlength="255"
         placeholder=" " required />
+
       <label class="login_label">Пароль</label>
     </div>
 
     <button id="send_button">Войти</button>
-  </form>
+  </div>
   <script>
     const idKeyboardArray = ["username", "password", "send_button"];
   </script>
   <script src="../js/keyboardNavigation.js"></script>
-  <script src="../node_modules/axios/dist/axios.min.js"></script>
   <script src="../js/login.js"></script>
 </body>
 

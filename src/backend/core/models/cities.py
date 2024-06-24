@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String
 from .base import Base
 
@@ -8,5 +8,3 @@ class City(Base):
 
     city_name: Mapped[str] = mapped_column(String(255), unique=True,
                                            nullable=False)
-    # cand_city: Mapped['candidates'] = relationship(
-    #     'candidates', back_populates="city")

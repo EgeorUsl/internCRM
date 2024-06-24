@@ -14,11 +14,11 @@ async def get_cities(
     return await crud.get_cities(session=session)
 
 
-@router.post("/create_city", response_model=CityCreate)
-async def create_city(city_in: CityCreate,
-                      session: AsyncSession = Depends(
-                          db_helper.scoped_session_dependency),
-                      ):
-    cities = await crud.create_city(session=session,
-                                    city_in=city_in)
-    return cities
+# @router.post("/create_city", response_model=CityCreate)
+# async def create_city(city_in: CityCreate,
+#                       session: AsyncSession = Depends(
+#                           db_helper.scoped_session_dependency),
+#                       ):
+#     cities = await crud.create_city(session=session,
+#                                     city_in=city_in)
+#     return cities
